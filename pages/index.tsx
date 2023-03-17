@@ -1,13 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useUser } from '@auth0/nextjs-auth0/client'
-
-
-const inter = Inter({ subsets: ['latin'] })
-
 
 
 export default function Home() {
@@ -31,8 +26,8 @@ export default function Home() {
                 <>
                     <p>
                         To test the login click
-                    </p>
-                    <Link href="/api/auth/login">Login </Link>
+                      </p>
+                      <button className={styles.login_btn }> <Link href="/api/auth/login">Login </Link> </button>
                 </>
             )}
 
