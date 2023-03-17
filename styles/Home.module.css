@@ -1,38 +1,25 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
-  width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
+.cta-button {
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
+    .cta-button:hover {
+        background-color: #45a049;
+    }
 
-.description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-}
 
 /* Login Button */
 .login_btn {
@@ -59,6 +46,52 @@
         background-color: #1c598a;
         transform: scale(0.95);
     }
+
+
+/* Logout Button */
+.logout_btn {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    outline: none;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+    .logout_btn:hover {
+        background-color: #c0392b;
+        transform: scale(1.05);
+    }
+
+    .logout_btn:active {
+        background-color: #8e2d1c;
+        transform: scale(0.95);
+    }
+
+
+/* User Info */
+.user_info {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Container for User Info, Logout Button and Login Button */
+.user_info_container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+
 
 
 

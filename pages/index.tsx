@@ -7,6 +7,42 @@ import { useUser } from '@auth0/nextjs-auth0/client'
 
 export default function Home() {
     const { user, isLoading } = useUser()
+
+    function renderLoginPage() {
+        return (
+            <>
+                <button className={`${styles.login_btn} ${styles.user_info_container}`}>
+                    <Link href="/api/auth/login">Login </Link>
+                </button>
+
+                <div className={ styles.container }>
+                    <h1>Discover AutoCare+</h1>
+                    <p>The ultimate car maintenance tracker. Effortlessly log services, track costs, and stay ahead with a personalized maintenance schedule. Experience the future of automotive care with AutoCare+!</p>
+                    <button className={styles.cta_button}>Get Started Now</button>
+                </div>
+            </>
+        )
+    }
+
+    function renderLogoutPage() {
+        return (
+            <>
+                <h4>Rendered user info on the client</h4>
+                <div className={styles.user_info_container}>
+                    <div className={styles.user_info}>
+                        {/*<p>nickname: {user.nickname}</p>*/}
+                        <p>{user.name}</p>
+                    </div>
+                    <button className={styles.logout_btn}>
+                        <Link href="/api/auth/logout">Logout </Link>
+                    </button>
+                </div>
+            </>
+        );
+    }
+
+
+
   return (
     <>
       <Head>
@@ -15,32 +51,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <main className={styles.main}>
+          <main className={styles.main}>
 
+              <h1>Car Maintenance</h1>
 
-            <h1>Next.js and Auth0 Example</h1>
+              {isLoading && <p>Loading login info...</p>}
 
-            {isLoading && <p>Loading login info...</p>}
+              {!isLoading && !user && renderLoginPage()}
 
-            {!isLoading && !user && (
-                <>
-                    <p>
-                        To test the login click
-                      </p>
-                      <button className={styles.login_btn }> <Link href="/api/auth/login">Login </Link> </button>
-                </>
-            )}
+              {user && renderLogoutPage()}
 
-            {user && (
-                <>
-                    <h4>Rendered user info on the client</h4>
-                    <p>nickname: {user.nickname}</p>
-                    <p>name: {user.name}</p>
-
-                    <Link href="/api/auth/logout">Logout </Link>
-                </>
-            )}
-      </main>
+          </main>
     </>
   )
 }
