@@ -1,0 +1,29 @@
+name: Next.js CI
+
+on:
+  push:
+    branches:
+      - dev # Replace with your default branch name, e.g., main
+  pull_request:
+    branches:
+      - dev # Replace with your default branch name, e.g., main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.14.0]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build
+    - run: npm run test
+      env:
+        CI: true
