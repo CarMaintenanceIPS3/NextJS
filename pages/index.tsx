@@ -25,12 +25,14 @@ export default function Home() {
     }
 
     function renderLogoutPage() {
+        if (!user) {
+            return <p>Loading...</p>;
+        }
         return (
             <>
                 <h4>Rendered user info on the client</h4>
                 <div className={styles.user_info_container}>
                     <div className={styles.user_info}>
-                        {/*<p>nickname: {user.nickname}</p>*/}
                         <p>{user.name}</p>
                     </div>
                     <button className={styles.logout_btn}>

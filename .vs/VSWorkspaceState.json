@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github",
+    "\\.github\\workflows",
     "\\pages",
-    "\\pages\\api",
-    "\\pages\\api\\auth",
-    "\\__tests__"
+    "\\styles"
   ],
-  "SelectedNode": "\\test-utils.tsx",
   "PreviewInSolutionExplorer": false
 }
