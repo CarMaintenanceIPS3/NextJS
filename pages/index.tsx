@@ -16,9 +16,9 @@ export default function Home() {
                 </button>
 
                 <div className={ styles.container }>
-                    <h1>Discover AutoCare+</h1>
+                    <h2>Discover AutoCare+</h2>
                     <p>The ultimate car maintenance tracker. Effortlessly log services, track costs, and stay ahead with a personalized maintenance schedule. Experience the future of automotive care with AutoCare+!</p>
-                    <button className={styles.cta_button}>Get Started Now</button>
+                    <button>Get Started Now</button>
                 </div>
             </>
         )
@@ -31,8 +31,8 @@ export default function Home() {
         return (
             <>
                 <h4>Rendered user info on the client</h4>
-                <div className={styles.user_info_container}>
-                    <div className={styles.user_info}>
+                <div className={user_info_container}>
+                    <div className={user_info}>
                         <p>{user.name}</p>
                     </div>
                     <button className={styles.logout_btn}>
@@ -55,7 +55,7 @@ export default function Home() {
       </Head>
           <main className={styles.main}>
 
-              <h1>Car Maintenance</h1>
+              <h1>AutoCare+</h1>
 
               {isLoading && <p>Loading login info...</p>}
 
