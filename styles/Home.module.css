@@ -36,6 +36,20 @@
     }
 
 
+/* User Info */
+.user_info {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Container for User Info, Logout Button and Login Button */
+.user_info_container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
 
 
 
