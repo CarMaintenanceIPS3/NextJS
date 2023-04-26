@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import { useUser } from '@auth0/nextjs-auth0/client'
-
+import VehicleForm from '../components/VehicleForm';
 
 export default function Home() {
     const { user, isLoading } = useUser()
@@ -11,13 +11,25 @@ export default function Home() {
     function renderLoginPage() {
         return (
             <>
-                <button className={`${styles.login_btn} ${styles.user_info_container}`}>
-                    <Link href="/api/auth/login">Login </Link>
-                </button>
+
 
                 <div className={ styles.container }>
                     <h2>Discover AutoCare+</h2>
-                    <p>The ultimate car maintenance tracker. Effortlessly log services, track costs, and stay ahead with a personalized maintenance schedule. Experience the future of automotive care with AutoCare+!</p>
+                    <p>Experience the future of automotive care</p>
+
+                    <div className={styles.listContainer}>
+                        <p>Effortlessly</p>
+                        <ul>
+                            <li>log services</li>
+                            <li>track cost</li>
+                            <li>stay ahead with personalized maintenance schedule</li>
+                        </ul>
+                    </div>
+
+
+                    <button className={`${styles.login_btn} ${styles.user_info_container}`}>
+                        <Link href="/api/auth/login">Login </Link>
+                    </button>
                     <button>
                         <Link href="/api/auth/login">Get Started Now</Link>
                     </button>
@@ -26,7 +38,7 @@ export default function Home() {
         )
     }
 
-    function renderLogoutPage() {
+    function renderDashboard() {
         if (!user) {
             return <p>Loading...</p>;
         }
@@ -41,6 +53,7 @@ export default function Home() {
                         <Link href="/api/auth/logout">Logout </Link>
                     </button>
                 </div>
+                <VehicleForm />
             </>
         );
     }
@@ -63,7 +76,7 @@ export default function Home() {
 
               {!isLoading && !user && renderLoginPage()}
 
-              {user && renderLogoutPage()}
+              {user && renderDashboard()}
 
           </main>
     </>
