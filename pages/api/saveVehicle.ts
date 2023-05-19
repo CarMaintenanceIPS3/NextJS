@@ -21,7 +21,7 @@ export default async function handler(
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Include any other headers required by your API.
+                    'Authorization': `Bearer ${YOUR_TOKEN}`,
                 },
                 body: JSON.stringify({ brand, model, vin, year }),
             });
