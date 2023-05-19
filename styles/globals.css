@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaldi&family=Merriweather:wght@300;400;700&display=swap');
+
 :root {
     /* Core units
      ================================================================= */
@@ -6,8 +8,8 @@
     /* Typography
     ================================================================= */
     /* Fonts */
-    --font-family-primary: sans-serif;
-    --font-family-secondary: serif;
+    --font-family-primary: 'Merriweather', serif;
+    --font-family-secondary: 'Jaldi', sans-serif;
     --font-base-unit: var(--base-unit);
     /* Font sizes - 4x4 grid */
     --font-size-12: calc(var(--font-base-unit) * 3);
@@ -46,26 +48,12 @@
     --breakpoint-large: 1012px;
     /* Color
      ================================================================= */
-    --color-primary-lighter: #9FD4F5;
-    --color-primary-light: #6AB6E8;
-    --color-primary: #3498db;
-    --color-primary-dark: #037ED0;
-    --color-primary-darker: #0069AE;
-    --color-secondary-ligher: #A4F2DD;
-    --color-secondary-light: #8CE2CB;
-    --color-secondary: #33DBAE;
-    --color-secondary-dark: #2AA081;
-    --color-secondary-darker: #12906E;
-    --color-gray-1: #FFFFFF;
-    --color-gray-2: #EEEEEE;
-    --color-gray-3: #D5D5D5;
-    --color-gray-4: #BBBBBB;
-    --color-gray-5: #A1A1A1;
-    --color-gray-6: #888888;
-    --color-gray-7: #6F6F6F;
-    --color-gray-8: #555555;
-    --color-gray-9: #3C3C3C;
-    --color-gray-10: #222222;
+    --color-primary: #042748;
+    --color-secondary: #EDC7A2;
+    --color-accent: #bb6d50;
+    --color-warning: #FFA500;
+    --color-succes: #388e3c;
+    --color-danger: #b71c1c;
     /* Border
      ================================================================= */
     /* Border color */
@@ -75,9 +63,9 @@
     --border-color-dark: var(--gray-7);
     --border-color-darker: var(--gray-9);
     /* Border radius */
-    --border-radius-small: calc(var(--base-unit) * 1);
+    --border-radius-small: calc(var(--base-unit) * 0.5);
     --border-radius-medium: calc(var(--base-unit) * 2);
-    --border-radius-large: calc(var(--base-unit) * 2);
+    --border-radius-large: calc(var(--base-unit) * 3);
     /* Transition
      ================================================================= */
     --transition-faster: 0.1s;
@@ -92,11 +80,13 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-size: var(--font-size-16);
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: var(--font-family-primary);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,16 +94,12 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: var(--font-size-64);
+    color: var(--color-accent);
 }
 
 p {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    font-size: var(--font-size-20);
 }
 
 a {
@@ -123,25 +109,24 @@ a {
 
 
 button {
-    background-color: var(--color-primary);
-    font-size: 1rem;
+    background-color: var(--color-secondary);
     border: none;
-    color: white;
+    color: var(--color-primary);
     text-align: center;
     text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 4px;
+    padding: var(--space-16);
+    border-radius: var(--border-radius-medium);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     outline: none;
     display: inline-block;
     }
     button:hover {
-        background-color: var(--color-primary-dark);
+        filter: brightness(95%);
         transform: scale(1.05);
     }
     button:active {
-        background-color: #1c598a;
+        filter: brightness(105%);
         transform: scale(0.95);
     }
 

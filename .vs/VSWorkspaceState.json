@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\styles",
-    "\\__tests__"
+    "\\components",
+    "\\pages",
+    "\\pages\\api"
   ],
-  "SelectedNode": "\\__tests__\\index.test.tsx",
+  "SelectedNode": "\\pages\\api\\token.js",
   "PreviewInSolutionExplorer": false
 }

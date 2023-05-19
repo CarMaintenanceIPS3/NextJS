@@ -1,39 +1,57 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '@/styles/Home.module.css'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import styles from '@/styles/Home.module.css';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import VehicleForm from '../components/VehicleForm';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
     const { user, isLoading } = useUser()
+    const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        async function fetchToken() {
+            if (user) {
+                const response = await fetch('/api/token');
+                const data = await response.json();
+                setToken(data.accessToken);
+            }
+        }
+        fetchToken();
+    }, [user]);
+
 
     function renderLoginPage() {
         return (
             <>
+            <div>
+                <div className={styles.backgroundImage} />
 
+                <button className={styles.login_btn}>
+                    <Link href="/api/auth/login">Login </Link>
+                </button>
 
-                <div className={ styles.container }>
-                    <h2>Discover AutoCare+</h2>
-                    <p>Experience the future of automotive care</p>
+                <button className={styles.login_btn}>
+                    <Link href="/api/auth/login">Get Started Now</Link>
+                </button>
+            </div>
 
-                    <div className={styles.listContainer}>
-                        <p>Effortlessly</p>
-                        <ul>
-                            <li>log services</li>
-                            <li>track cost</li>
-                            <li>stay ahead with personalized maintenance schedule</li>
-                        </ul>
-                    </div>
+            <div className={ styles.container }>
+                <p>Experience the future of automotive care</p>
 
-
-                    <button className={`${styles.login_btn} ${styles.user_info_container}`}>
-                        <Link href="/api/auth/login">Login </Link>
-                    </button>
-                    <button>
-                        <Link href="/api/auth/login">Get Started Now</Link>
-                    </button>
+                <div className={styles.listContainer}>
+                    <p>Effortlessly</p>
+                    <ul>
+                        <li>log services</li>
+                        <li>track cost</li>
+                        <li>stay ahead with personalized maintenance schedule</li>
+                    </ul>
                 </div>
+
+
+
+            </div>
             </>
         )
     }
@@ -42,8 +60,13 @@ export default function Home() {
         if (!user) {
             return <p>Loading...</p>;
         }
+
+        console.log("Below is the token");
+        console.log(token);
+        console.log("Testing console log");
         return (
             <>
+
                 <h4>Rendered user info on the client</h4>
                 <div className={styles.user_info_container}>
                     <div className={styles.user_info}>
@@ -70,7 +93,7 @@ export default function Home() {
       </Head>
           <main className={styles.main}>
 
-              <h1>AutoCare+</h1>
+              <h1>Discover AutoCare+</h1>
 
               {isLoading && <p>Loading login info...</p>}
 
