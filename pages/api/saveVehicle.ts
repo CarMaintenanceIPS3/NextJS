@@ -16,7 +16,7 @@ export default async function handler(
 
         try {
             // Replace 'YOUR_API_ENDPOINT' with the actual endpoint of your API.
-            const apiUrl = 'YOUR_API_ENDPOINT';
+            const apiUrl = 'http://localhost:8080/Fauna/CreateCar';
             const apiResponse = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
