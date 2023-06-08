@@ -18,8 +18,10 @@ const VehicleForm = () => {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setVehicleData({ ...vehicleData, [e.target.name]: e.target.value });
+        const value = e.target.name === 'year' || e.target.name === 'kilometers' ? parseInt(e.target.value) : e.target.value;
+        setVehicleData({ ...vehicleData, [e.target.name]: value });
     };
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

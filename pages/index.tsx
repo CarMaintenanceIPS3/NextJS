@@ -74,8 +74,8 @@ export default function Home() {
                 <div className={styles.AddCarContainer}>
                     
                     <div className={styles.infoContainer}>
-                        <p>To provide you with accurate service recommendations and maintenance updates tailored to your vehicle, please enter your car's details. </p>
-                        <p>Let's get started!</p>
+                        <p>To provide you with accurate service recommendations and maintenance updates tailored to your vehicle, please enter your car&apos;s details. </p>
+                        <p>Let&apos;s get started!!</p>
                     </div>
 
                     <VehicleForm />
