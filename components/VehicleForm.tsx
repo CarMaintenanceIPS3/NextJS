@@ -1,18 +1,20 @@
 import { useState } from 'react';
+import styles from '@/styles/VehicleForm.module.css';
+
 
 type VehicleData = {
     brand: string;
     model: string;
-    vin: string;
     year: number;
+    kilometers: number;
 };
 
 const VehicleForm = () => {
     const [vehicleData, setVehicleData] = useState<VehicleData>({
         brand: '',
         model: '',
-        vin: '',
         year: 0,
+        kilometers: 0,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,52 +41,58 @@ const VehicleForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="brand">Brand:</label>
-            <input
-                id="brand"
-                name="brand"
-                type="text"
-                value={vehicleData.brand}
-                onChange={handleChange}
-                required
-            />
-            <br />
-            <label htmlFor="model">Model:</label>
-            <input
-                id="model"
-                name="model"
-                type="text"
-                value={vehicleData.model}
-                onChange={handleChange}
-                required
-            />
-            <br />
-            <label htmlFor="vin">VIN:</label>
-            <input
-                id="vin"
-                name="vin"
-                type="text"
-                value={vehicleData.vin}
-                onChange={handleChange}
-                required
-            />
-            <br />
-            <label htmlFor="year">Year:</label>
-            <input
-                id="year"
-                name="year"
-                type="number"
-                value={vehicleData.year}
-                onChange={handleChange}
-                min="1900"
-                max="2099"
-                required
-            />
-            <br />
-            <button type="submit">Submit</button>
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <div>
+                <label htmlFor="brand">Brand</label>
+                <input
+                    id="brand"
+                    name="brand"
+                    type="text"
+                    value={vehicleData.brand}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="model">Model</label>
+                <input
+                    id="model"
+                    name="model"
+                    type="text"
+                    value={vehicleData.model}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="kilometers">Kilometers</label>
+                <input
+                    id="kilometers"
+                    name="kilometers"
+                    type="number"
+                    value={vehicleData.kilometers}
+                    onChange={handleChange}
+                    min="1"
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="year">Year</label>
+                <input
+                    id="year"
+                    name="year"
+                    type="number"
+                    value={vehicleData.year}
+                    onChange={handleChange}
+                    min="1900"
+                    max="2099"
+                    required
+                />
+            </div>
+            <button type="submit">Continue</button>
         </form>
     );
+
 };
 
 export default VehicleForm;

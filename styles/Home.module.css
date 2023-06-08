@@ -1,3 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 600px;
+}
+
+.container > p,
+.container > div > p,
+.container > div > ul > li {
+    font-size: 24px;
+    }
+    .container > div {
+        padding-top: 40px;
+        }
+        .container > div > ul {
+            font-size: 24px;
+            margin-left: 50px;
+            }
+            .container > div > ul > li {
+                margin: 10px 0;
+                line-height: 40px;
+            }
+
+
 /*Background*/
 .backgroundImage {
     position: fixed; /* Keeps the image in position even when scrolling */
@@ -10,23 +34,28 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-
-
-
-
-
-
-.container {
-    text-align: left;
+.backgroundImage > :first-child {
+    margin-top:250px;
 }
 
 
 
 .login_btn{
-
+    width: 300px;
+    height: 60px;
+    
 }
 
+.login_btn_a {
+    color: var(--color-primary);
+    font-size: 25px;
+}
 
 
 /* Logout Button */
@@ -72,9 +101,31 @@
     align-items: center;
 }
 
+.AddCarContainer {
+    display: flex;
+    padding-top: 40vh;
+    padding-left: 10vw;
+    gap: 100px;
+}
 
 
-
+.AddCarText {
+    position: absolute;
+    font-size: var(--font-size-64);
+    font-weight: 300;
+    color: var(--color-accent);
+    top: 20vh;
+    left: 10vw;
+}
+.infoContainer {
+    width: 40%;
+    }
+    .infoContainer :first-child {
+        padding-bottom: 40px;
+    }
+    .infoContainer > p {
+        font-size: var(--font-size-24);
+    }
 
 
 

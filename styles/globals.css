@@ -89,12 +89,11 @@ body {
     color: var(--color-secondary);
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
 h1 {
-    font-size: var(--font-size-64);
+    font-size: var(--font-size-48);
     color: var(--color-accent);
 }
 
@@ -120,6 +119,7 @@ button {
     transition: background-color 0.3s, transform 0.3s;
     outline: none;
     display: inline-block;
+    margin: var(--space-16);
     }
     button:hover {
         filter: brightness(95%);
@@ -129,7 +129,6 @@ button {
         filter: brightness(105%);
         transform: scale(0.95);
     }
-
 
 
 

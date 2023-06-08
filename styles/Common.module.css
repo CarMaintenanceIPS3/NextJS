@@ -1,0 +1,13 @@
+
+.loggedIn {
+    /* Styles for when the user is logged in */
+    position: fixed;
+    text-align: left;
+    margin-top: 0;
+}
+
+.loggedOut {
+    /* Styles for when the user is not logged in */
+    margin-top: 20vh;
+    padding-bottom: 20vh;
+}

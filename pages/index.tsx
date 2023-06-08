@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css';
+import stylesCommon from '@/styles/Common.module.css';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import VehicleForm from '../components/VehicleForm';
 import { useEffect, useState } from 'react';
@@ -25,19 +26,7 @@ export default function Home() {
     function renderLoginPage() {
         return (
             <>
-            <div>
-                <div className={styles.backgroundImage} />
-
-                <button className={styles.login_btn}>
-                    <Link href="/api/auth/login">Login </Link>
-                </button>
-
-                <button className={styles.login_btn}>
-                    <Link href="/api/auth/login">Get Started Now</Link>
-                </button>
-            </div>
-
-            <div className={ styles.container }>
+            <div className={styles.container}>
                 <p>Experience the future of automotive care</p>
 
                 <div className={styles.listContainer}>
@@ -45,12 +34,19 @@ export default function Home() {
                     <ul>
                         <li>log services</li>
                         <li>track cost</li>
-                        <li>stay ahead with personalized maintenance schedule</li>
+                        <li>stay ahead with personalized <br></br>maintenance schedule</li>
                     </ul>
                 </div>
+            </div>
 
+            <div className={styles.backgroundImage}>
+                <button className={styles.login_btn} >
+                    <Link href="/api/auth/login" className={styles.login_btn_a}>Login </Link>
+                </button>
 
-
+                <button className={styles.login_btn}>
+                    <Link href="/api/auth/login" className={styles.login_btn_a}>Get Started Now</Link>
+                </button>
             </div>
             </>
         )
@@ -66,8 +62,6 @@ export default function Home() {
         console.log("Testing console log");
         return (
             <>
-
-                <h4>Rendered user info on the client</h4>
                 <div className={styles.user_info_container}>
                     <div className={styles.user_info}>
                         <p>{user.name}</p>
@@ -76,8 +70,17 @@ export default function Home() {
                         <Link href="/api/auth/logout">Logout </Link>
                     </button>
                 </div>
-                <VehicleForm />
-            </>
+                <h2 className={styles.AddCarText}>Add you car</h2>
+                <div className={styles.AddCarContainer}>
+                    
+                    <div className={styles.infoContainer}>
+                        <p>To provide you with accurate service recommendations and maintenance updates tailored to your vehicle, please enter your car's details. </p>
+                        <p>Let's get started!</p>
+                    </div>
+
+                    <VehicleForm />
+                </div>
+             </>
         );
     }
 
@@ -93,7 +96,9 @@ export default function Home() {
       </Head>
           <main className={styles.main}>
 
-              <h1>Discover AutoCare+</h1>
+              <h1 className={user ? stylesCommon.loggedIn : stylesCommon.loggedOut}>
+                  {user ? 'AutoCare+' : 'Discover AutoCare+'}
+              </h1>
 
               {isLoading && <p>Loading login info...</p>}
 
