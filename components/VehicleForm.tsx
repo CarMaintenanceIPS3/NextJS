@@ -33,7 +33,7 @@ const VehicleForm = () => {
             });
             const result = await response.json();
             if (result.success) {
-                alert(result.message);
+                console.log(result.message);
             } else {
                 throw new Error(result.message);
             }
@@ -43,10 +43,10 @@ const VehicleForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form} data-testid="vehicle-form">
             <div>
                 <label htmlFor="brand">Brand</label>
-                <input
+                <input 
                     id="brand"
                     name="brand"
                     type="text"
