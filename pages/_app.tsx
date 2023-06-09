@@ -1,4 +1,3 @@
-// pages/_app.tsx
 import React from 'react';
 import { AppProps } from 'next/app';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
