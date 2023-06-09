@@ -1,6 +1,5 @@
 import { server } from '../../mocks/server';
-import axios from 'axios';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

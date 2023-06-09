@@ -14,9 +14,13 @@ export default function Home() {
     useEffect(() => {
         async function fetchToken() {
             if (user) {
-                const response = await fetch('/api/token');
-                const data = await response.json();
-                setToken(data.accessToken);
+                try {
+                    const response = await fetch('/api/token');
+                    const data = await response.json();
+                    setToken(data.accessToken);
+                } catch (error) {
+                    console.error('Failed to fetch token:', error);
+                }
             }
         }
         fetchToken();
