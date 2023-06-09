@@ -23,7 +23,7 @@ export default function Home() {
                 }
             }
         }
-        fetchToken();
+        fetchToken().catch(error => console.error('Error in fetchToken:', error));
     }, [user]);
 
 
