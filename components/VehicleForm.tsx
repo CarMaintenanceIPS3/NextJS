@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import styles from '@/styles/VehicleForm.module.css';
 
+type VehicleFormProps = {
+    token: string | null;
+};
 
 type VehicleData = {
     brand: string;
@@ -9,7 +12,7 @@ type VehicleData = {
     kilometers: number;
 };
 
-const VehicleForm = () => {
+const VehicleForm: React.FC<VehicleFormProps> = ({ token }) => {
     const [vehicleData, setVehicleData] = useState<VehicleData>({
         brand: '',
         model: '',
@@ -26,11 +29,20 @@ const VehicleForm = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
+            const data = {
+                brand: vehicleData.brand,
+                model: vehicleData.model,
+                year: vehicleData.year,
+                kilometers: vehicleData.kilometers,
+                token,
+            };
+
             const response = await fetch('/api/saveVehicle', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(vehicleData),
+                body: JSON.stringify(data),
             });
+
             const result = await response.json();
             if (result.success) {
                 console.log(result.message);

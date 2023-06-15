@@ -6,25 +6,38 @@ import stylesCommon from '@/styles/Common.module.css';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import VehicleForm from '../components/VehicleForm';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+
 
 export default function Home() {
-    const { user, isLoading } = useUser()
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState<string | null>(null);
+    const router = useRouter();
+    const getAuthorizationCode = () => {
+        const url = new URL('https://dev-jmdtw3b5y1usoxa1.eu.auth0.com/authorize');
+        url.searchParams.append('response_type', 'code');
+        url.searchParams.append('client_id', 'upxBUXTPTeTxvCOzgvV9jM9qvBYC63lH');
+        url.searchParams.append('redirect_uri', 'http://localhost:3000/api/callback');
+        url.searchParams.append('scope', 'openid profile email');
+        url.searchParams.append('audience', 'https://localhost/carmaintenance');
+        router.push(url.toString());
+    };
 
+    /*testing if cookie is recieved from callback.ts*/
     useEffect(() => {
-        async function fetchToken() {
-            if (user) {
-                try {
-                    const response = await fetch('/api/token');
-                    const data = await response.json();
-                    setToken(data.accessToken);
-                } catch (error) {
-                    console.error('Failed to fetch token:', error);
-                }
-            }
-        }
-        fetchToken().catch(error => console.error('Error in fetchToken:', error));
-    }, [user]);
+        const accessToken = Cookies.get('token') || null;
+        console.log('Token retrieved from cookie:', accessToken);
+        setToken(accessToken);
+    }, [router.asPath]);
+
+    const logout = () => {
+        Cookies.remove('token');
+
+        /*This can be done in a better way*/
+        window.location.href = '/';
+    };
+
+
 
 
     function renderLoginPage() {
@@ -38,26 +51,29 @@ export default function Home() {
                     <ul>
                         <li>log services</li>
                         <li>track cost</li>
-                        <li>stay ahead with personalized <br></br>maintenance schedule</li>
+                        <li>stay ahead with a personalized <br></br>maintenance schedule</li>
                     </ul>
                 </div>
             </div>
 
             <div className={styles.backgroundImage}>
-                <button className={styles.login_btn} >
-                    <Link href="/api/auth/login" className={styles.login_btn_a}>Login </Link>
-                </button>
 
-                <button className={styles.login_btn}>
-                    <Link href="/api/auth/login" className={styles.login_btn_a}>Get Started Now</Link>
-                </button>
+
+
+                    <button className={styles.login_btn} onClick={() => getAuthorizationCode()}>
+                        Login
+                    </button>
+
+                    <button className={styles.login_btn} onClick={() => getAuthorizationCode()}>
+                        Get Started Now
+                    </button>
             </div>
             </>
         )
     }
 
     function renderDashboard() {
-        if (!user) {
+        if (!token) {
             return <p>Loading...</p>;
         }
 
@@ -68,11 +84,11 @@ export default function Home() {
             <>
                 <div className={styles.user_info_container}>
                     <div className={styles.user_info}>
-                        <p>{user.name}</p>
+                        <p>name</p>
                     </div>
-                    <button className={styles.logout_btn}>
-                        <Link href="/api/auth/logout">Logout </Link>
-                    </button>
+
+
+                    <button className={styles.logout_btn} onClick={logout}>Logout</button>
                 </div>
                 <h2 className={styles.AddCarText}>Add you car</h2>
                 <div className={styles.AddCarContainer}>
@@ -82,7 +98,7 @@ export default function Home() {
                         <p>Let&apos;s get started!!</p>
                     </div>
 
-                    <VehicleForm />
+                    <VehicleForm token={token} />
                 </div>
              </>
         );
@@ -98,18 +114,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-          <main className={styles.main}>
 
-              <h1 className={user ? stylesCommon.loggedIn : stylesCommon.loggedOut}>
-                  {user ? 'AutoCare+' : 'Discover AutoCare+'}
+          <main className={styles.main}>
+              <h1 className={token ? stylesCommon.loggedIn : stylesCommon.loggedOut}>
+                  {token ? 'AutoCare+' : 'Discover AutoCare+'}
               </h1>
 
-              {isLoading && <p>Loading login info...</p>}
+              {!token && renderLoginPage()}
 
-              {!isLoading && !user && renderLoginPage()}
+              {token && renderDashboard()}
 
-              {user && renderDashboard()}
-
+              {token && (
+                  <button onClick={logout}>Logout</button>
+              )}
           </main>
     </>
   )
