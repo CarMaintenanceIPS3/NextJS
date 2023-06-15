@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import styles from '@/styles/Home.module.css';
 import stylesCommon from '@/styles/Common.module.css';
-import { useUser } from '@auth0/nextjs-auth0/client';
 import VehicleForm from '../components/VehicleForm';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
